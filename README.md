@@ -1,6 +1,6 @@
 # LowPowerSleepAfterInactivity
-a simple low power sleep after no activity is detected.
+Example of a simple low power sleep after no activity is detected.
 
 # Function
-- Show button 1 & 2 Pressed and Unpressed on Olex Display then sleep forever until interrupt is pressed.
+- Show button 1 & 2 Pressed and Unpressed on Oled Display, if no activity MCU & Display will go to sleep mode until interrupt is detected.
 - I made it as simple as possible to understand.
