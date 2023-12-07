@@ -32,7 +32,6 @@ const unsigned char PROGMEM FSufi3 [] = {
   0xff, 0xf8, 0xff, 0xff, 0xff, 0xff, 0xff, 0xf8, 0xff, 0xff, 0xff, 0xff, 0xff, 0xf8
 };
 
-#include <Wire.h>
 #include <Adafruit_SSD1306.h>
 #include <LowPower.h>
 #include <TimerOne.h>
@@ -44,7 +43,7 @@ Adafruit_SSD1306 display(128, 64, &Wire, -1);
 
 const int buttonPin1 = 2; // Change to the actual pin you are using for the first button
 const int buttonPin2 = 3; // Change to the actual pin you are using for the second button
-const int wakeUpPin  = 2; // Use D2 for wake-up interrupt
+// Default interrupt use pin D2 for wake-up interrupt, same as button 1 in this sketch.
 
 
 const unsigned long sleepTimeout = 5000; // default 5 seconds, change as you need in milliseconds
@@ -52,19 +51,18 @@ volatile unsigned long lastActivityTime = 0; // Declare as volatile for ISR safe
 
 
 void wakeUp(){
-  // let this empty
+  // just a handler, let it empty
 }
 
 void timerISR() {
-  // let this empty
+  // also a handler, let it empty
 }
 
 void setup() {
   pinMode(buttonPin1, INPUT_PULLUP);
   pinMode(buttonPin2, INPUT_PULLUP);
-  pinMode(wakeUpPin, INPUT_PULLUP);
 
-  attachInterrupt(digitalPinToInterrupt(wakeUpPin), wakeUp, FALLING);
+  attachInterrupt(digitalPinToInterrupt(buttonPin1), wakeUp, FALLING);
 
   display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
   display.clearDisplay();
